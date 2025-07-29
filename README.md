@@ -78,13 +78,25 @@ tank/
    sudo chmod 600 .env
    ```
 
-   > **Note:** Be sure to update the `PAPERLESS_URL`, `PAPERLESS_SECRET_KEY`, `PAPERLESS_TIME_ZONE`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` and if necessary the `PAPERLESS_DATA_VOLUME` & `PAPERLESS_PORT`.
+   > **Note:** Be sure to update the `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` and if necessary the `PAPERLESS_DATA_VOLUME` & `PAPERLESS_PORT`.
+   
+4. **Configure webserver environment variables**
+
+   Copy and modify the `webserver.env` file:
+
+   ```bash
+   sudo cp webserver.env.example webserver.env
+   sudo nano webserver.env
+   sudo chmod 600 webserver.env
+   ```
+
+   > **Note:** Be sure to update the `PAPERLESS_URL`, `PAPERLESS_SECRET_KEY`, `PAPERLESS_TIME_ZONE` and if necessary the `USERMAP_UID`, `USERMAP_GID` & `PAPERLESS_OCR_LANGUAGE`.
 
    > **Note:** `PAPERLESS_URL` is the URL where the service will be running. Eg. `https://paperless.example.com`.
    
    > **Tip:** You can create the `PAPERLESS_URL` using [Nginx Proxy Manager](https://github.com/Vantasin/Nginx-Proxy-Manager.git) as a reverse proxy for HTTPS certificates via Let's Encrypt.
-   
-4. **Start paperless-ngx**
+
+5. **Start paperless-ngx**
 
    ```bash
    sudo docker compose up -d

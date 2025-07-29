@@ -59,7 +59,7 @@ services:
       - ${PAPERLESS_DATA_VOLUME}/media:/usr/src/paperless/media
       - ${PAPERLESS_DATA_VOLUME}/export:/usr/src/paperless/export
       - ${PAPERLESS_DATA_VOLUME}/consume:/usr/src/paperless/consume
-    env_file: .env
+    env_file: webserver.env
     environment:
       PAPERLESS_REDIS: redis://broker:6379
       PAPERLESS_DBHOST: db
