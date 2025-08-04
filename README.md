@@ -78,7 +78,7 @@ tank/
    sudo chmod 600 .env
    ```
 
-   > **Note:** Be sure to update the `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` and if necessary the `PAPERLESS_DATA_VOLUME` & `PAPERLESS_PORT`.
+   > **Note:** Be sure to update the `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` and if necessary the `PAPERLESS_DATA_VOLUME`.
    
 4. **Configure webserver environment variables**
 
@@ -94,7 +94,13 @@ tank/
 
    > **Note:** `PAPERLESS_URL` is the URL where the service will be running. Eg. `https://paperless.example.com`.
    
-   > **Tip:** You can create the `PAPERLESS_URL` using [Nginx Proxy Manager](https://github.com/Vantasin/Nginx-Proxy-Manager.git) as a reverse proxy for HTTPS certificates via Let's Encrypt.
+   > **Tip:** You must create the `PAPERLESS_URL` using [Nginx Proxy Manager](https://github.com/Vantasin/Nginx-Proxy-Manager.git) as a reverse proxy for HTTPS certificates via Let's Encrypt.
+   >
+   > **Proxy Host:**
+   >  - **Domain Name:** `https://paperless.example.com`
+   >  - **Scheme:** `http`
+   >  - **Forward Hostname/IP:** `paperless`
+   >  - **Forward Port:** `8000`
 
 5. **Start paperless-ngx**
 
@@ -108,7 +114,7 @@ tank/
 
 Once deployed, access **Paperless-ngx** using:
 
-- **Web Interface:** Enter the URL that was set for `PAPERLESS_URL`. Eg. `https://paperless.example.com` or `http://localhost:8001`.
+- **Web Interface:** Enter the URL that was set for `PAPERLESS_URL`. Eg. `https://paperless.example.com`.
 
 - **Initial Setup:** When you first access the web interface, you will be prompted to create a superuser account.
 
