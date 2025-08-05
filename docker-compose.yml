@@ -34,14 +34,14 @@ services:
     image: docker.io/library/redis:8
     restart: unless-stopped
     networks:
-      - npm_proxy
+      - paperless_internal
     volumes:
       - ${PAPERLESS_DATA_VOLUME}/redisdata:/data
   db:
     image: docker.io/library/postgres:17
     restart: unless-stopped
     networks:
-      - npm_proxy
+      - paperless_internal
     volumes:
       - ${PAPERLESS_DATA_VOLUME}/pgdata:/var/lib/postgresql/data
     environment:
@@ -54,6 +54,7 @@ services:
     restart: unless-stopped
     networks:
       - npm_proxy
+      - paperless_internal
     depends_on:
       - db
       - broker
@@ -75,7 +76,7 @@ services:
     image: docker.io/gotenberg/gotenberg:8.20
     restart: unless-stopped
     networks:
-      - npm_proxy
+      - paperless_internal
     # The gotenberg chromium route is used to convert .eml files. We do not
     # want to allow external content like tracking pixels or even javascript.
     command:
@@ -86,7 +87,7 @@ services:
     image: docker.io/apache/tika:latest
     restart: unless-stopped
     networks:
-      - npm_proxy
+      - paperless_internal
 
 volumes:
   data:
@@ -97,3 +98,5 @@ volumes:
 networks:
   npm_proxy:
     external: true
+  paperless_internal:
+    driver: bridge
